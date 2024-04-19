@@ -32,4 +32,4 @@ This generates visualizations and disributions of the classified sentiments for 
 
 ## Caution
 
-Tiktok prevents automated scraping so the user. To avoid causing potential problems, the user will have about 10 seconds to complete the "bot check" before the scraping script starts executing. 
+Tiktok prevents automated scraping. To avoid any potential problems, the user will have about 10 seconds to complete the "bot check" before the scraping script starts executing. 
