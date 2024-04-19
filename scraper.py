@@ -1,9 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 import time
-import requests
 from bs4 import BeautifulSoup
 import os
+import json
 
 # Set up Firefox driver
 firefox_options = Options()
@@ -60,13 +60,14 @@ def dump_comments_to_file(comments, filename):
             file.write(comment + '\n')
 
 # This block is added to support multiple labels and video URLs at the same time 
-video_labels_dict = {
-    "Ellie1" : "https://www.tiktok.com/@elliegoldenlife/video/7339522920856702251?lang=en",
-    "Ellie2" : "https://www.tiktok.com/@elliegoldenlife/video/7358435715090255150?lang=en"
-}
+url_labels_dict = {}
 
-for key in video_labels_dict.keys():
-    video_url = video_labels_dict[key]
+# Open the JSON file and load its contents into our dictionary
+with open('input.json', 'r') as file:
+    url_labels_dict = json.load(file)
+
+for key in url_labels_dict.keys():
+    video_url = url_labels_dict[key]
     comments = scrape_comments(video_url)
     filename = "scraped_comments/" + str(key) + '.txt'
     dump_comments_to_file(comments, filename)
